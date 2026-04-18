@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.cyan,
         fontFamily: GoogleFonts.lato().fontFamily,
-        textTheme: GoogleFonts.latoTextTheme(),
       ),
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
