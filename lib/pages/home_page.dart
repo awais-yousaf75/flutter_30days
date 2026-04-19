@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_30days/widgets/drawer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder(child: Text("Home Page"));
+    return Scaffold(
+      appBar: AppBar(title: Text("Home")),
+      body: Column(children: [Text("This is home page.")]),
+      drawer: MyDrawer(),
+    );
   }
 }
