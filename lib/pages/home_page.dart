@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(title: Text("Catalog App")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+        child: (CatalogModel.items.isNotEmpty)
             ? ListView.builder(
                 itemCount: CatalogModel.items.length,
                 itemBuilder: (context, index) =>
