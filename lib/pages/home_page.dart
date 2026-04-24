@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_30days/models/catalog.dart';
-import 'package:flutter_30days/widgets/ItemWidget.dart';
 import 'package:flutter_30days/widgets/drawer.dart';
 
 // (Day 11): learned about constraints, context and
