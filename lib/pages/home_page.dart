@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_30days/models/catalog.dart';
@@ -24,25 +25,34 @@ class _HomePageState extends State<HomePage> {
   }
 
   void loadData() async {
+    await Future.delayed(Duration(seconds: 3));
     final catJson = await rootBundle.loadString("assets/files/catalog.json");
     final decodedData = jsonDecode(catJson);
     final productData = decodedData["products"];
+    CatalogModel.items = List.from(
+      productData,
+    ).map<Item>((item) => Item.fromMap(item)).toList();
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    final dummyList = List.generate(20, (index) => CatalogModel.items[0]);
-
     return Scaffold(
       appBar: AppBar(title: Text("Catalog App")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ListView.builder(
-          itemCount: dummyList.length,
-          itemBuilder: (context, index) {
-            return ItemWidget(item: dummyList[index]);
-          },
-        ),
+        child: (CatalogModel.items.isNotEmpty)
+            ? ListView.builder(
+                itemCount: CatalogModel.items.length,
+                itemBuilder: (context, index) =>
+                    ItemWidget(item: CatalogModel.items[index]),
+              )
+            : Center(
+                child: CupertinoActivityIndicator(
+                  radius: 15,
+                  color: Colors.pinkAccent,
+                ),
+              ),
       ),
       drawer: MyDrawer(),
     );
