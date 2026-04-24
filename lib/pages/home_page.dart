@@ -42,10 +42,29 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: (CatalogModel.items.isNotEmpty)
-            ? ListView.builder(
+            ? GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                ),
+                itemBuilder: (context, index) {
+                  final item = CatalogModel.items[index];
+                  return Card(
+                    clipBehavior: .antiAlias,
+                    shape: RoundedRectangleBorder(borderRadius: .circular(10)),
+                    child: GridTile(
+                      header: Container(
+                        padding: EdgeInsets.all(12),
+                        decoration: BoxDecoration(color: Colors.pinkAccent),
+                        child: Text(item.name),
+                      ),
+                      footer: Text("\$ ${item.price}"),
+                      child: Image.network(item.image),
+                    ),
+                  );
+                },
                 itemCount: CatalogModel.items.length,
-                itemBuilder: (context, index) =>
-                    ItemWidget(item: CatalogModel.items[index]),
               )
             : Center(
                 child: CupertinoActivityIndicator(
